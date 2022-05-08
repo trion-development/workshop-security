@@ -87,7 +87,7 @@ public class TrainingWebController {
 
    @Transactional
    @PostMapping("")
-   public String addTraining(@Valid TrainingDto training, BindingResult result, Model model) {
+   public String addTraining(@ModelAttribute("training") @Valid TrainingDto training, BindingResult result, Model model) {
       if (result.hasErrors()) {
          model.addAttribute("trainings", trainingMapper.toDto(trainingService.findAll()));
          model.addAttribute("heading", "Alle Trainings");
