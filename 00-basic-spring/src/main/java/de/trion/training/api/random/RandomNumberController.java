@@ -14,7 +14,7 @@ public class RandomNumberController {
 
     @GetMapping
     public List<Integer> random(@RequestParam Integer min, @RequestParam Integer max) throws Exception {
-        TimeUnit.MILLISECONDS.sleep(75 + random.nextInt(400));
+        TimeUnit.MILLISECONDS.sleep(75 + random.nextInt(40));
         return List.of(random.nextInt(max + 1 - min) + min);
     }
 }
