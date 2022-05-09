@@ -1,5 +1,6 @@
 package de.trion.training.common.training;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.ReadOnlyProperty;
@@ -17,9 +18,10 @@ import java.time.LocalDateTime;
 public class Training {
 
    @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   @Column(name="COL_ID")
-   private Integer id;
+   @Column(name = "COL_ID", nullable = false, length = 36, columnDefinition = "char")
+   @GeneratedValue(generator = "uuid")
+   @GenericGenerator(name = "uuid", strategy = "uuid2")
+   private String id;
 
    @Version
    @Column(name = "COL_VERSION")
@@ -151,7 +153,7 @@ public class Training {
          return this;
       }
 
-      public TrainingBuilder withId(Integer id) {
+      public TrainingBuilder withId(String id) {
          template.id = id;
          return this;
       }

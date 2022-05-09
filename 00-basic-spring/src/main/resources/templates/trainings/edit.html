@@ -34,11 +34,19 @@
             <small id="instructorDescription" class="form-text text-muted">Trainer für das Trainings</small>
             <p class="alert-warning" th:if="${#fields.hasErrors('instructor.name')}" th:errors="*{instructor.name}">Fehler</p>
 
-         <input type="hidden" th:field="*{version}" />
+          <label for="description">Beschreibung</label>
+          <input th:field="*{description}" type="text" class="form-control" id="description"
+                 aria-describedby="descriptionDescription" placeholder="Trainer">
+          <small id="descriptionDescription" class="form-text text-muted">Beschreibung des Trainings</small>
+          <p class="alert-warning" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Fehler</p>
+
+
+          <input type="hidden" th:field="*{version}" />
          <button type="submit" class="btn btn-primary btn-lg">Speichern</button>
          (Version: [[${training.version}]],
          Erstellt: <span th:text="${#temporals.format(training.createdOn, 'HH:mm:ss')}"></span>,
          Bearbeitet: <span th:text="${#temporals.format(training.modifiedOn, 'HH:mm:ss')}"></span>
+         )
       </form>
    </div>
 </main><!-- /.container -->

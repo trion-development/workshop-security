@@ -14,6 +14,9 @@ public class TrainingDto {
    @JsonProperty(value="internal_id", access = JsonProperty.Access.READ_ONLY)
    private Integer id;
 
+   @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+   private Integer version;
+
    @NotBlank
    private String location;
 
@@ -45,6 +48,16 @@ public class TrainingDto {
 
    public void setId(Integer id) {
       this.id = id;
+   }
+
+   public Integer getVersion()
+   {
+      return version;
+   }
+
+   public void setVersion(Integer version)
+   {
+      this.version = version;
    }
 
    public String getLocation() {

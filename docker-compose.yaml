@@ -1,0 +1,60 @@
+version: "3.4"
+
+services:
+
+  traefik:
+    image: "traefik:v2.6"
+    container_name: "traefik"
+    command:
+      #- "--log.level=DEBUG"
+      - "--accesslog"
+      - "--api"
+      - "--api.dashboard"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+      - "8090:8080"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.localhost`)"
+      - "traefik.http.routers.traefik.entrypoints=web"
+
+  mysql:
+    image: mariadb:10.4
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    labels:
+      - "traefik.enable=false"
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: app
+      MYSQL_USER: app
+      MYSQL_PASSWORD: app
+      TZ: Europe/Berlin
+    ports:
+      - "3306:3306"
+
+  adminer:
+    image: adminer
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.adminer.rule=Host(`adminer.localhost`)"
+    environment:
+      - ADMINER_DEFAULT_DB_NAME=app
+      - ADMINER_DEFAULT_DB_HOST=mysql #this is documented
+      - ADMINER_DEFAULT_SERVER=mysql #this works
+    ports:
+      - "8080"
+
+
+  hoppscotch:
+    image: hoppscotch/hoppscotch
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.hoppscotch.rule=Host(`hoppscotch.localhost`)
