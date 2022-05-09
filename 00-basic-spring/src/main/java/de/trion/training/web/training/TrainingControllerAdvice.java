@@ -36,7 +36,7 @@ public class TrainingControllerAdvice {
       mav.addObject("training", request.getAttribute("training"));
       mav.addObject("id", ex.getIdentifier());
 
-      var current = trainingRepository.getById( (Integer) ex.getIdentifier());
+      var current = trainingRepository.getById( (String) ex.getIdentifier());
       mav.addObject("current", trainingMapper.toDto(current));
       return mav;
    }

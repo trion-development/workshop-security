@@ -12,7 +12,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
-@EntityListeners({AuditingEntityListener.class, TrainingEntityLister.class})
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 @Table(name = "TBL_TRAININGS")
 public class Training {
@@ -58,11 +58,11 @@ public class Training {
       this.description = description;
    }
 
-   public Integer getId() {
+   public String getId() {
       return id;
    }
 
-   public void setId(Integer id) {
+   public void setId(String id) {
       this.id = id;
    }
 
@@ -78,7 +78,7 @@ public class Training {
       return new TrainingBuilder().withInstructor(name);
    }
 
-   public static TrainingBuilder withId(Integer id) {
+   public static TrainingBuilder withId(String id) {
       return new TrainingBuilder().withId(id);
    }
 

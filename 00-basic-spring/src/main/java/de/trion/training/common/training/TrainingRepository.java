@@ -5,9 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface TrainingRepository extends JpaRepository<Training, Integer> {
-
-   //@Query(value = "SELECT COL_LOCATION FROM TBL_TRAININGS",nativeQuery = true)
+public interface TrainingRepository extends JpaRepository<Training, String> {
    @Query("SELECT t.location FROM Training t")
    List<String> findLocations();
 }

@@ -1,6 +1,6 @@
 package de.trion.training.web.training;
 
-import de.trion.training.common.seats.LocalSeatService;
+import de.trion.training.common.seats.SeatService;
 import de.trion.training.common.training.Training;
 import de.trion.training.common.training.TrainingService;
 import org.slf4j.Logger;
@@ -22,10 +22,10 @@ public class TrainingWebController {
    private final Logger logger = LoggerFactory.getLogger(getClass());
 
    private final TrainingMapper trainingMapper;
-   private final LocalSeatService seatService;
+   private final SeatService seatService;
    private final TrainingService trainingService;
 
-   public TrainingWebController(TrainingMapper trainingMapper, LocalSeatService seatService, TrainingService trainingService) {
+   public TrainingWebController(TrainingMapper trainingMapper, SeatService seatService, TrainingService trainingService) {
       this.trainingMapper = trainingMapper;
       this.seatService = seatService;
       this.trainingService = trainingService;
@@ -55,7 +55,7 @@ public class TrainingWebController {
    }
 
    @GetMapping("{id}")
-   public ModelAndView training(@PathVariable Integer id) {
+   public ModelAndView training(@PathVariable String id) {
       var mav = new ModelAndView("/trainings/detail");
       var training = trainingService.getById(id);
 
@@ -64,7 +64,7 @@ public class TrainingWebController {
    }
 
    @GetMapping("{id}/edit")
-   public ModelAndView editTraining(@PathVariable Integer id) {
+   public ModelAndView editTraining(@PathVariable String id) {
       var mav = new ModelAndView("/trainings/edit");
       var training = trainingService.getById(id);
 

@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class TrainingDto {
 
    @JsonProperty(value="internal_id", access = JsonProperty.Access.READ_ONLY)
-   private Integer id;
+   private String id;
 
    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
    private Integer version;
@@ -42,11 +42,11 @@ public class TrainingDto {
       this.seats = seats;
    }
 
-   public Integer getId() {
+   public String getId() {
       return id;
    }
 
-   public void setId(Integer id) {
+   public void setId(String id) {
       this.id = id;
    }
 

@@ -25,7 +25,7 @@ public class TrainingService
         return trainingRepository.findAll(pageable);
     }
 
-    public Training getById(Integer id)
+    public Training getById(String id)
     {
         return trainingRepository.getById(id);
     }
