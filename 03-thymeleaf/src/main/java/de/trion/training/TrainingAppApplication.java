@@ -11,7 +11,6 @@ import org.springframework.web.client.RestTemplate;
 import java.time.Duration;
 
 @EnableJpaAuditing
-@EnableWebSecurity(debug = true)
 @SpringBootApplication
 public class TrainingAppApplication {
 
