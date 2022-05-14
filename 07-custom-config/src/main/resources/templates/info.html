@@ -27,7 +27,12 @@
         </p>
         <p>
             Roles:
+
+            <!--
+            principal kann null sein!
             <span sec:authentication="principal.authorities"></span>
+            -->
+            <span sec:authentication="authorities"></span>
             <span th:text="${#authentication.authorities}"></span>
             <br />
             <div>
