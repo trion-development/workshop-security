@@ -105,6 +105,7 @@ public class WebSecurityConfig {
     {
         return httpSecurity
            .mvcMatcher("/api/**")
+           .cors().and()
            .authorizeRequests()
            .antMatchers(HttpMethod.POST).hasRole("ADMIN")
            .anyRequest().permitAll()
