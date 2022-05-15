@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(allowCredentials = "true", originPatterns = "*")
 @RequestMapping("/api/userinfo")
 public class UserInfo
 {
