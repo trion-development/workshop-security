@@ -136,7 +136,7 @@ public class WebSecurityConfig {
 //        httpSecurity.anonymous().principal(anon);
 
         httpSecurity
-           .formLogin().and()
+//           .formLogin().and()
            .oauth2Login(withDefaults())
            .logout().logoutSuccessUrl("/");
         return httpSecurity.build();

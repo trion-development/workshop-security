@@ -47,6 +47,50 @@
     "notBefore" : 0,
     "groups" : [ "/admin" ]
   }, {
+    "id" : "2022b511-c464-48ae-a511-063b20ac01bb",
+    "createdTimestamp" : 1645279260658,
+    "username" : "manager1",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : true,
+    "email" : "user-manager@example.com",
+    "attributes" : {
+      "corporateKey" : [ "userManager1" ]
+    },
+    "credentials" : [ {
+      "id" : "04ff90e6-82cf-4cbb-8c3b-1ebfeaebb018",
+      "type" : "password",
+      "createdDate" : 1645284369117,
+      "secretData" : "{\"value\":\"1loigZrn7LncjSMjXC0DiZJgba6VutPpqUpTOjw3U7WTdqeCdY3CW9MdFXgvZh/VdAUMUtGPom8maTVmZk13Mg==\",\"salt\":\"YPfPukTW7IbGRQNbhXr01A==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "notBefore" : 0,
+    "groups" : [ "/user-manager" ]
+  }, {
+    "id" : "2022b511-c464-48ae-a511-063b20ac01bc",
+    "createdTimestamp" : 1645279260658,
+    "username" : "manager2",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : true,
+    "email" : "user-manager2@example.com",
+    "attributes" : {
+      "corporateKey" : [ "userManager2" ]
+    },
+    "credentials" : [ {
+      "id" : "04ff90e6-82cf-4cbb-8c3b-1ebfeaebb019",
+      "type" : "password",
+      "createdDate" : 1645284369117,
+      "secretData" : "{\"value\":\"1loigZrn7LncjSMjXC0DiZJgba6VutPpqUpTOjw3U7WTdqeCdY3CW9MdFXgvZh/VdAUMUtGPom8maTVmZk13Mg==\",\"salt\":\"YPfPukTW7IbGRQNbhXr01A==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "notBefore" : 0,
+    "groups" : [ "/user-manager" ]
+  }, {
     "id" : "fdcd4c2e-3307-44c1-9f17-f7a568ac2e87",
     "createdTimestamp" : 1645279233662,
     "username" : "monitoring",
@@ -91,40 +135,18 @@
     "notBefore" : 0,
     "groups" : [ "/pricing" ]
   }, {
-      "id" : "7dc3b0a5-5bd4-47f8-97c1-7ba5c6ce6c33",
-      "createdTimestamp" : 1645279199276,
-      "username" : "pricing2",
-      "enabled" : true,
-      "totp" : false,
-      "emailVerified" : true,
-      "email" : "pricing2@example.com",
-      "attributes" : {
-        "corporateKey" : [ "pricing2" ]
-      },
-      "credentials" : [ {
-        "id" : "14ff90e6-82cf-4cbb-8c3b-1ebfeaebb018",
-        "type" : "password",
-        "createdDate" : 1645284369117,
-        "secretData" : "{\"value\":\"1loigZrn7LncjSMjXC0DiZJgba6VutPpqUpTOjw3U7WTdqeCdY3CW9MdFXgvZh/VdAUMUtGPom8maTVmZk13Mg==\",\"salt\":\"YPfPukTW7IbGRQNbhXr01A==\",\"additionalParameters\":{}}",
-        "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
-      } ],
-      "disableableCredentialTypes" : [ ],
-      "requiredActions" : [ ],
-      "notBefore" : 0,
-      "groups" : [ "/pricing" ]
-    }, {
-    "id" : "2022b511-c464-48ae-a511-063b20ac01bb",
-    "createdTimestamp" : 1645279260658,
-    "username" : "manager1",
+    "id" : "7dc3b0a5-5bd4-47f8-97c1-7ba5c6ce6c33",
+    "createdTimestamp" : 1645279199276,
+    "username" : "pricing2",
     "enabled" : true,
     "totp" : false,
     "emailVerified" : true,
-    "email" : "user-manager@example.com",
+    "email" : "pricing2@example.com",
     "attributes" : {
-      "corporateKey" : [ "userManager1" ]
+      "corporateKey" : [ "pricing2" ]
     },
     "credentials" : [ {
-      "id" : "04ff90e6-82cf-4cbb-8c3b-1ebfeaebb018",
+      "id" : "14ff90e6-82cf-4cbb-8c3b-1ebfeaebb018",
       "type" : "password",
       "createdDate" : 1645284369117,
       "secretData" : "{\"value\":\"1loigZrn7LncjSMjXC0DiZJgba6VutPpqUpTOjw3U7WTdqeCdY3CW9MdFXgvZh/VdAUMUtGPom8maTVmZk13Mg==\",\"salt\":\"YPfPukTW7IbGRQNbhXr01A==\",\"additionalParameters\":{}}",
@@ -133,28 +155,26 @@
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ ],
     "notBefore" : 0,
-    "groups" : [ "/user-manager" ]
+    "groups" : [ "/pricing" ]
   }, {
-    "id" : "2022b511-c464-48ae-a511-063b20ac01bc",
-    "createdTimestamp" : 1645279260658,
-    "username" : "manager2",
+    "id" : "c09cde18-b4a4-40d8-85c2-263e2f98508b",
+    "createdTimestamp" : 1652648917571,
+    "username" : "user",
     "enabled" : true,
     "totp" : false,
     "emailVerified" : true,
-    "email" : "user-manager2@example.com",
-    "attributes" : {
-      "corporateKey" : [ "userManager2" ]
-    },
+    "email" : "user@example.com",
     "credentials" : [ {
-      "id" : "04ff90e6-82cf-4cbb-8c3b-1ebfeaebb019",
+      "id" : "5023852a-9713-45b8-9572-8b77024a33ca",
       "type" : "password",
-      "createdDate" : 1645284369117,
-      "secretData" : "{\"value\":\"1loigZrn7LncjSMjXC0DiZJgba6VutPpqUpTOjw3U7WTdqeCdY3CW9MdFXgvZh/VdAUMUtGPom8maTVmZk13Mg==\",\"salt\":\"YPfPukTW7IbGRQNbhXr01A==\",\"additionalParameters\":{}}",
+      "createdDate" : 1652648928044,
+      "secretData" : "{\"value\":\"z9WHH4oW9G3RauMnJiMgeQVml7cNJX9k2gBTDuXf/JFvMOXaA1X7PtbsV6gHPNyZlxFmYj9gbaDIjquhQtJ2Rg==\",\"salt\":\"Kup64OH3QHPi9tPCYi0k5A==\",\"additionalParameters\":{}}",
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-pt" ],
     "notBefore" : 0,
-    "groups" : [ "/user-manager" ]
+    "groups" : [ ]
   } ]
 }
