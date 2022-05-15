@@ -1,0 +1,28 @@
+<main *ngIf="trainingWithSeats|async; let training" role="main" class="container">
+
+  <div class="starter-template">
+    <h1 class="content-header">Training: {{training?.topic}}</h1>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Ort</th>
+        <th>Thema</th>
+        <th>Trainer</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>{{training.location}}</td>
+        <td>{{training.topic}}</td>
+        <td>{{training.instructor.name}}</td>
+      </tr>
+      <tr>
+        <td colspan="3">Beschreibung: <span>{{training.description}}</span></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <a class="btn btn-warning" routerLink="/trainings/{{training.internal_id}}">
+    Bearbeiten
+  </a>
+</main>

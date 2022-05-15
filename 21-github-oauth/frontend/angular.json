@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "basic-auth-demo": {
+    "github-oatuh-demo": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/basic-auth-demo",
+            "outputPath": "dist/github-oatuh-demo",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "basic-auth-demo:build:production"
+              "browserTarget": "github-oatuh-demo:build:production"
             },
             "development": {
-              "browserTarget": "basic-auth-demo:build:development",
+              "browserTarget": "github-oatuh-demo:build:development",
               "proxyConfig": "src/proxy.conf.json"
             }
           },
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "basic-auth-demo:build"
+            "browserTarget": "github-oatuh-demo:build"
           }
         },
         "test": {
@@ -108,7 +108,7 @@
       }
     }
   },
-  "defaultProject": "basic-auth-demo",
+  "defaultProject": "github-oatuh-demo",
   "cli": {
     "defaultCollection": "@ngrx/schematics"
   }
