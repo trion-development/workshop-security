@@ -19,8 +19,8 @@ import { AuthService } from './core/auth/auth.service';
 import * as fromRoot from './core/index';
 import { SeatsEffects } from './core/seats/seats.effects';
 import { HomeComponent } from './features/home/home.component';
-import { ModalModule } from './shared/components/modal/modal.module';
-import { NavComponent } from './shared/components/nav/nav.component';
+import { ModalModule } from './shared/modal/modal.module';
+import { NavComponent } from './shared/nav/nav.component';
 import { LoginComponent } from './features/login/login.component';
 
 registerLocaleData(langDe, 'de');

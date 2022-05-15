@@ -3,21 +3,25 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../user';
 
+interface AuthState {
+  user?: User;
+  username?: string;
+  password?: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthStoreService {
 
-  private state = new BehaviorSubject<{
-    user?: User;
-    username?: string;
-    password?: string;
-  }>({});
+  private state = new BehaviorSubject<AuthState>({});
 
   constructor() {
+    this.init();
+    this.state.subscribe(state => localStorage.setItem('authState', JSON.stringify(state)));
   }
 
-  storeCredentials(username: string, password:string) {
+  storeCredentials(username: string, password: string) {
     this.state.next({username, password});
   }
 
@@ -29,7 +33,7 @@ export class AuthStoreService {
     return this.state.asObservable()
       .pipe(
         map(state => ({
-          loginPending: !!state.username && !! state.password && !state.user,
+          loginPending: !!state.username && !!state.password && !state.user,
           user: state.user
         }))
       );
@@ -45,5 +49,19 @@ export class AuthStoreService {
 
   clear() {
     this.state.next({});
+  }
+
+  private init() {
+    const authStateRaw = localStorage.getItem('authState');
+    if (!authStateRaw) {
+      return;
+    }
+    try {
+      const authState: AuthState = JSON.parse(authStateRaw);
+      if (authState.username && authState.user && authState.password) {
+        this.state.next(authState);
+      }
+    } catch (e) {
+    }
   }
 }
