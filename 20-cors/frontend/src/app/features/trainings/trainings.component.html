@@ -1,0 +1,124 @@
+<main role="main" class="container">
+
+  <div class="starter-template">
+    <h1>Alle Trainings</h1>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col" appSortable="location" (sort)="onSort($event)">Ort</th>
+        <th scope="col" appSortable="topic" (sort)="onSort($event)">Thema</th>
+        <th scope="col" appSortable="instructor.name" (sort)="onSort($event)">Trainer</th>
+        <th>Plätze</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let training of trainingsWithSeats|async" data-test="training-row">
+        <td>{{training.location}}</td>
+        <td>
+          <a [routerLink]="[training.internal_id]"> <span>{{training.topic}}</span> </a>
+        </td>
+        <td>{{training.instructor.name}}</td>
+        <td>
+          <span *ngIf="training.seats !== undefined"
+                data-test="seat-pills"
+                class="badge rounded-pill {{(training.seats) <= 3 ? 'bg-danger' : 'bg-success'}}">
+            {{training.seats}}
+          </span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="pagination | async as pg" class="text-left">
+      <p data-test="pages">
+        Seite: <span class="badge rounded-pill bg-secondary">{{pg.page}}</span>
+        Gesamtseiten:
+        <span class="badge rounded-pill bg-secondary">{{(pg.totalElements / pg.pageSize)|number: '0.0-0'}}</span>
+        Elemente: <span class="badge rounded-pill bg-secondary">{{pg.totalElements}}</span>
+      </p>
+
+      <div class="row">
+        <div class="col-first col-2">
+          <div ngbDropdown data-test="pagesize">
+            <button class="btn btn-secondary dropdown-toggle"
+                    ngbDropdownToggle
+                    aria-haspopup="true" aria-expanded="false">
+              #/Seite
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownMenuButton">
+              <button ngbDropdownItem (click)="changePageSize(3)">3</button>
+              <button ngbDropdownItem (click)="changePageSize(5)">5</button>
+              <button ngbDropdownItem (click)="changePageSize(10)">10</button>
+              <button ngbDropdownItem (click)="changePageSize(20)">20</button>
+            </div>
+          </div>
+        </div>
+        <div class="col col-last">
+          <ngb-pagination [collectionSize]="pg.totalElements"
+                          [(page)]="pg.page"
+                          [pageSize]="pg.pageSize"
+                          (pageChange)="loadPage($event)">
+          </ngb-pagination>
+        </div>
+      </div>
+    </div>
+
+    <h2>Neues Training</h2>
+    <form [formGroup]="trainingForm" (ngSubmit)="addNewTraining()">
+      <div *ngIf="error|async as err" class="row alert alert-danger text-left">
+        {{err|json}}
+      </div>
+
+      <div class="row">
+        <div class="form-group col">
+          <label for="location">Veranstaltungsort</label>
+          <input type="text"
+                 formControlName="location"
+                 class="form-control typeahead location-typeahead"
+                 id="location"
+                 aria-describedby="locationDescription"
+                 placeholder="Ort / Remote">
+          <small id="locationDescription" class="form-text text-muted">Veranstaltungsort des Trainings</small>
+          <p *ngIf="location.invalid && location.touched" class="alert-warning">Fehler</p>
+        </div>
+
+        <div class="form-group col">
+          <label for="topic">Thema</label>
+          <input formControlName="name"
+                 type="text"
+                 class="form-control"
+                 id="topic"
+                 aria-describedby="topicDescription"
+                 placeholder="Thema">
+          <small id="topicDescription" class="form-text text-muted">Thema des Trainings</small>
+          <p *ngIf="name.invalid && name.touched" class="alert-warning">Fehler</p>
+        </div>
+
+        <div class="form-group col">
+          <label for="instructor">Trainer</label>
+          <input formControlName="trainer"
+                 type="text"
+                 class="form-control"
+                 id="instructor"
+                 aria-describedby="instructorDescription"
+                 placeholder="Trainer">
+          <small id="instructorDescription" class="form-text text-muted">Trainer für das Trainings</small>
+          <p *ngIf="trainer.invalid && trainer.touched" class="alert-warning">Fehler</p>
+        </div>
+
+        <div class="form-group col">
+          <label for="description">Beschreibung</label>
+          <input formControlName="description"
+                 type="text"
+                 class="form-control"
+                 id="description"
+                 aria-describedby="descriptionDescription"
+                 placeholder="In diesem Training...">
+          <small id="descriptionDescription" class="form-text text-muted">Beschreibung des Trainings</small>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg">Erzeugen</button>
+    </form>
+  </div>
+
+</main>

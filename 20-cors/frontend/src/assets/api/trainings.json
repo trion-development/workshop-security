@@ -1,0 +1,68 @@
+[
+  {
+    "id": "t1",
+    "name": "Angular & TypeScript",
+    "description": "Angular ist ein JavaScript/TypeScript Framework zur Entwicklung moderner Webclients. Entwickler, die mit Java oder .net Erfahrungen haben, werden sich bei Angular schnell zurecht finden, da Angular ein Full-Stack-Framework ist und viele vertraute Konzepte aufgreift. Angular ist dabei auf Entwicklerproduktivität, Wartbarkeit und hohe Geschwindigkeit in Produktion ausgelegt.",
+    "startDate": "2021-05-11",
+    "endDate": "2021-05-14",
+    "trainer": {
+      "name": "Karsten",
+      "fields": [
+        "Angular",
+        "TypeScript",
+        "JavaScript",
+        "React",
+        "Nest.js",
+        "RxJS",
+        "Vue.js"
+      ]
+    }
+  },
+  {
+    "id": "t2",
+    "name": "React & TypeScript",
+    "description": "React ist ein von Facebook entwickeltes JavaScript-Framework zur Frontend-Entwicklung. React ist ein reines View-Framework. Mit zusätzlichen Bibliotheken kann frei entschieden werden, wie man z.B. Routing und Server-Zugriffe gestaltet. Entwickler mit Erfahrung in objektorientierten Sprachen, finden sich sehr schnell in React zurecht. React ist auf Entwicklerproduktivität, leichte Wartbarkeit und Geschwindigkeit in Produktion ausgelegt.",
+    "startDate": "2021-05-18",
+    "endDate": "2021-05-21",
+    "trainer": {
+      "name": "Helene",
+      "fields": [
+        "Java",
+        "TypeScript",
+        "JavaScript",
+        "React"
+      ]
+    }
+  },
+  {
+    "id": "t3",
+    "name": "Vue.js",
+    "description": "Vue.js, auch kurz Vue, ist ein Web Framework zur Entwicklung moderner Desktop und mobile Web Apps. Vue bietet dabei einen sehr einfachen Einstieg und kann dank des Komponenten-Modells eingesetzt werden, um sowohl kleine dynamische Anreicherungen vorzunehmen, als auch vollständige Single-Page-Anwendungen im Browser umzusetzen.",
+    "startDate": "2021-05-18",
+    "endDate": "2021-05-21",
+    "trainer": {
+      "name": "Martha",
+      "fields": [
+        "Vue.js",
+        "TypeScript",
+        "JavaScript"
+      ]
+    }
+  },
+  {
+    "id": "t4",
+    "name": "Spring Boot",
+    "description": "Im Kontext von Microservice Architekturen gewinnt Spring Boot als Basis für Java Anwendungen zunehmend an Bedeutung. Mit leichtgewichtiger Java Config und eingebettetem Servlet Container sind Services mit Spring Boot schnell und effizient zu implementieren.",
+    "startDate": "2021-05-25",
+    "endDate": "2021-05-28",
+    "trainer": {
+      "name": "Thomas",
+      "fields": [
+        "Java",
+        "Spring Boot",
+        "Spring",
+        "JSF"
+      ]
+    }
+  }
+]
