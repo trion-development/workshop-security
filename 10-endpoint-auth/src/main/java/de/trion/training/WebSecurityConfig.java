@@ -1,5 +1,7 @@
 package de.trion.training;
 
+import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
+import org.springframework.boot.actuate.health.HealthEndpoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -49,9 +51,16 @@ public class WebSecurityConfig {
             .passwordEncoder(s -> "{noop}"+s)
             .build();
 
+        var endpointAdmin = User.withUsername("endpoint")
+           .password("endpoint")
+           .roles("ENDPOINT_ADMIN")
+           .passwordEncoder(s -> "{noop}"+s)
+           .build();
+
         var mgr = new JdbcUserDetailsManager(dataSource);
         mgr.createUser(user);
         mgr.createUser(admin);
+        mgr.createUser(endpointAdmin);
         return mgr;
     }
 
@@ -88,6 +97,18 @@ public class WebSecurityConfig {
            .mvcMatchers("/trainings/*/edit").hasRole("ADMIN")
            .anyRequest().permitAll();
         return httpSecurity.build();
+    }
+
+    @Bean
+    public SecurityFilterChain endpoint(HttpSecurity http) throws Exception {
+        http.requestMatcher(EndpointRequest.toAnyEndpoint().excluding(HealthEndpoint.class))
+           .authorizeRequests()
+           //.antMatchers("/actuator/health", "/actuator/health/**")
+           //.permitAll()
+           .anyRequest()
+           .hasRole("ENDPOINT_ADMIN")
+           .and().httpBasic();
+        return http.build();
     }
 
     @Bean
