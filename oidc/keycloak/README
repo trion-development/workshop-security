@@ -1,0 +1,17 @@
+= Import
+
+Automatic for bulk exported data
+
+
+= Export
+
+Bulk
+
+docker-compose exec  auth /opt/keycloak/bin/kc.sh export --realm app --dir /tmp/import
+
+Single files (note: user import will not work and not contain credentials)
+
+docker-compose exec  auth /opt/keycloak/bin/kcadm.sh get realms/app --server http://localhost:9090  --realm master --no-config --user admin --password admin
+docker-compose exec  auth /opt/keycloak/bin/kcadm.sh get groups -r app  --server http://localhost:9090  --realm master --no-config --user admin --password admin
+docker-compose exec  auth /opt/keycloak/bin/kcadm.sh get users -r app  --server http://localhost:9090  --realm master --no-config --user admin --password admin
+docker-compose exec  auth /opt/keycloak/bin/kcadm.sh get clients -r app  --server http://localhost:9090  --realm master --no-config --user admin --password admin
