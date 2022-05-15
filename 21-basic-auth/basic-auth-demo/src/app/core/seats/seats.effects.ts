@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY, merge } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
-import { loadTrainingsSuccess } from '../../trainings/state/collection/training.actions';
+import { loadTrainingsSuccess } from '../../features/trainings/state/collection/training.actions';
 import { loadSeat } from './seats.actions';
 import { SeatsService } from './seats.service';
 

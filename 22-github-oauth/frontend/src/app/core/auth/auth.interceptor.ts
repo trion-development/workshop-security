@@ -11,13 +11,13 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    return this.authStore.getCredentials()
+    return this.authStore.getToken()
       .pipe(
         first(),
-        exhaustMap(cred => {
+        exhaustMap(token => {
           let headers = request.headers;
-          if (cred.password && cred.username) {
-            headers = headers.set('Authorization', `Basic ${btoa(cred.username + ':' + cred.password)}`);
+          if (token) {
+            headers = headers.set('Authorization', 'token ' + token);
           }
           const req = request.clone({headers});
           return next.handle(req);

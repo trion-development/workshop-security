@@ -1,7 +1,8 @@
 import { registerLocaleData } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import langDe from '@angular/common/locales/de';
 import { APP_INITIALIZER, LOCALE_ID, NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -13,12 +14,14 @@ import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { authInit, AuthService } from './core/auth/auth.service';
+import { AuthInterceptor } from './core/auth/auth.interceptor';
+import { AuthService } from './core/auth/auth.service';
 import * as fromRoot from './core/index';
 import { SeatsEffects } from './core/seats/seats.effects';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './features/home/home.component';
 import { ModalModule } from './shared/components/modal/modal.module';
 import { NavComponent } from './shared/components/nav/nav.component';
+import { LoginComponent } from './features/login/login.component';
 
 registerLocaleData(langDe, 'de');
 
@@ -26,10 +29,11 @@ registerLocaleData(langDe, 'de');
   declarations: [
     AppComponent,
     HomeComponent,
-    NavComponent
+    NavComponent,
+    LoginComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'serverApp'}),
+    BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
 
@@ -42,15 +46,11 @@ registerLocaleData(langDe, 'de');
 
     ModalModule,
     NgbCollapseModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'de'},
-    {
-      provide: APP_INITIALIZER,
-      useFactory: authInit,
-      deps: [AuthService],
-      multi: true
-    }
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

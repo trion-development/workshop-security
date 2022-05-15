@@ -1,5 +1,5 @@
 import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
-import { selectSeatsFeature } from '../../core/seats/seats.reducer';
+import { selectSeatsFeature } from '../../../core/seats/seats.reducer';
 import * as fromTraining from './collection/training.reducer';
 import { trainingCollectionFeatureKey } from './collection/training.reducer';
 import { getTraining } from './collection/training.selectors';

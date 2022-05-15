@@ -3,7 +3,7 @@ import {
   ActivatedRouteSnapshot,
   CanActivate,
   CanLoad,
-  Route, Router,
+  Route,
   RouterStateSnapshot,
   UrlSegment,
   UrlTree
@@ -18,26 +18,30 @@ import { AuthService } from './auth.service';
 })
 export class AuthGuard implements CanActivate, CanLoad {
 
-  constructor(private authStore: AuthStoreService, private router: Router) {
+  constructor(private authStore: AuthStoreService, private authService: AuthService) {
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> {
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.getLogedIn();
   }
 
-  canLoad(route: Route, segments: UrlSegment[]): Observable<boolean | UrlTree> {
+  canLoad(
+    route: Route,
+    segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.getLogedIn();
   }
 
-  private getLogedIn(): Observable<boolean | UrlTree> {
+  private getLogedIn(): Observable<boolean> {
     return this.authStore.getLoginState()
       .pipe(
         first(state => !state.loginPending),
-        map(state => {
-          if (!state.user) {
-            return this.router.parseUrl('/login')
+        map(state => !!state.user),
+        tap(loggedIn => {
+          if (!loggedIn) {
+            this.authService.authorizeUser();
           }
-          return true;
         })
       );
   }

@@ -10,18 +10,21 @@ export class AuthStoreService {
 
   private state = new BehaviorSubject<{
     user?: User;
-    username?: string;
-    password?: string;
+    accessToken?: string;
   }>({});
 
   constructor() {
   }
 
-  storeCredentials(username: string, password:string) {
-    this.state.next({username, password});
+  storeToken(access_token: string) {
+    this.state.next({accessToken: access_token});
   }
 
-  storeUser(user: User) {
+  logout(): void {
+    this.state.next({});
+  }
+
+  userLoaded(user: User) {
     this.state.next({...this.state.value, user});
   }
 
@@ -29,21 +32,17 @@ export class AuthStoreService {
     return this.state.asObservable()
       .pipe(
         map(state => ({
-          loginPending: !!state.username && !! state.password && !state.user,
+          loginPending: !!state.accessToken && !state.user,
           user: state.user
         }))
       );
   }
 
-  getCredentials(): Observable<{ username?: string; password?: string }> {
-    return this.state.pipe(map(({user, ...credentials}) => credentials));
+  getToken(): Observable<string | undefined> {
+    return this.state.pipe(map(state => state.accessToken));
   }
 
   getUser(): Observable<User | undefined> {
     return this.state.pipe(map(state => state.user));
-  }
-
-  clear() {
-    this.state.next({});
   }
 }

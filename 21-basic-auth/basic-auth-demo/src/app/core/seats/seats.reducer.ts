@@ -1,5 +1,5 @@
 import { createFeatureSelector, createReducer, on } from '@ngrx/store';
-import * as TrainingActions from '../../trainings/state/collection/training.actions';
+import * as TrainingActions from '../../features/trainings/state/collection/training.actions';
 import * as SeatsActions from './seats.actions';
 
 export const seatFeatureKey = 'seats';

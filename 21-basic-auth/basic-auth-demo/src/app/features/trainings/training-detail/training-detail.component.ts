@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { filter, map, switchMap, tap } from 'rxjs/operators';
-import { truthy } from '../../shared/truthyness.helper';
+import { truthy } from '../../../shared/truthyness.helper';
 import { selectTrainingWithSeats } from '../state/index';
 import { Training } from '../state/training.model';
 

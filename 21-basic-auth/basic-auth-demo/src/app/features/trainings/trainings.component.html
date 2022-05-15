@@ -64,7 +64,7 @@
     </div>
 
     <h2>Neues Training</h2>
-    <form [formGroup]="trainingForm" (ngSubmit)="addNewTraining()" method="post">
+    <form [formGroup]="trainingForm" (ngSubmit)="addNewTraining()">
       <div *ngIf="error|async as err" class="row alert alert-danger text-left">
         {{err|json}}
       </div>
