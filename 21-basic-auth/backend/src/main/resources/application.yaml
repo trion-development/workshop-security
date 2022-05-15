@@ -8,13 +8,14 @@ logging:
 management:
   endpoints:
     web:
-      cors:
-        allowed-origin-patterns: "*"
-        allow-credentials: "true"
-        allowed-methods: OPTIONS, GET, POST
-        allowed-headers: "*"
       exposure:
         include: "*"
+      cors:
+        allowed-headers: "*"
+        exposed-headers: "*"
+        allowed-methods: GET, POST, OPTIONS
+        allow-credentials: "true"
+        allowed-origin-patterns: "*"
   endpoint:
     health:
       show-details: always
