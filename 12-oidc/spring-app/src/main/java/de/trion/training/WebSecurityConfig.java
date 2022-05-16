@@ -38,6 +38,7 @@ public class WebSecurityConfig {
            .addScript("classpath:org/springframework/security/core/userdetails/jdbc/users.ddl").build();
     }
 
+    @Profile("dev")
     @Bean
     UserDetailsManager users(DataSource dataSource)
     {
@@ -108,6 +109,7 @@ public class WebSecurityConfig {
         return httpSecurity
            .mvcMatcher("/api/**")
            .cors().and()
+           .csrf().disable()
            .authorizeRequests()
            .antMatchers(HttpMethod.POST).hasRole("ADMIN")
            .anyRequest().authenticated()

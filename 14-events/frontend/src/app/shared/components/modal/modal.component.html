@@ -1,0 +1,10 @@
+<div class="backdrop" (click)="$event.stopPropagation()">
+  <div class="card">
+    <button (click)="close()">X</button>
+    <h1>Fehler</h1>
+    <p>
+      {{message}}
+    </p>
+  </div>
+</div>
+
