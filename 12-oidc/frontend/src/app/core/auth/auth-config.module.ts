@@ -15,7 +15,7 @@ import { AuthModule, LogLevel } from 'angular-auth-oidc-client';
       useRefreshToken: true,
       unauthorizedRoute: '/',
       renewTimeBeforeTokenExpiresInSeconds: 30,
-      secureRoutes: ['http://localhost:8080/api/trainings'],
+      secureRoutes: ['http://localhost:8080/api/'],
       logLevel: LogLevel.Error
     }
   })],
