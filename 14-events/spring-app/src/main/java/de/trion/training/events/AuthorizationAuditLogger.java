@@ -14,7 +14,7 @@ public class AuthorizationAuditLogger extends AbstractAuthorizationAuditListener
     @Override
     public void onApplicationEvent(AbstractAuthorizationEvent event)
     {
-        // siehe auch org.springframework.boot.actuate.security.AuthenticationAuditListener
+        // siehe auch org.springframework.boot.actuate.security.AuthorizationAuditListener
         logger.warn("AuthZEvent {} ({}) ", event, event.getClass().getSimpleName());
     }
 }
