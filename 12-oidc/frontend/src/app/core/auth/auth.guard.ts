@@ -8,41 +8,39 @@ import {
   UrlSegment,
   UrlTree
 } from '@angular/router';
-import { Observable, tap } from 'rxjs';
-import { first, map } from 'rxjs/operators';
-import { AuthStoreService } from './auth-store.service';
-import { AuthService } from './auth.service';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate, CanLoad {
 
-  constructor(private authStore: AuthStoreService, private authService: AuthService) {
+  constructor(private oidcSecurity: OidcSecurityService) {
   }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.getLogedIn();
+    return this.getLogedIn(state.url.replace('/',''));
   }
 
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.getLogedIn();
+    return this.getLogedIn(segments.join('/'));
   }
 
-  private getLogedIn(): Observable<boolean> {
-    return this.authStore.getLoginState()
+  private getLogedIn(url: string): Observable<boolean> {
+    return this.oidcSecurity.checkAuth()
       .pipe(
-        first(state => !state.loginPending),
-        map(state => !!state.user),
-        tap(loggedIn => {
-          if (!loggedIn) {
-            this.authService.authorizeUser();
+        map(({isAuthenticated}) => {
+          if (isAuthenticated) {
+            return true;
           }
-        })
-      );
+          this.oidcSecurity.authorize();
+          return false;
+        }));
   }
 }

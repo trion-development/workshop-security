@@ -10,6 +10,7 @@ const routes: Routes = [
   {
     path: 'trainings',
     canLoad: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./features/trainings/trainings.module')
       .then(m => m.TrainingsModule)
   },

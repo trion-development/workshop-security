@@ -9,17 +9,17 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { AuthInterceptor } from 'angular-auth-oidc-client';
 import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthInterceptor } from './core/auth/auth.interceptor';
-import { authInit, AuthService } from './core/auth/auth.service';
+import { AuthConfigModule } from './core/auth/auth-config.module';
 import * as fromRoot from './core/index';
 import { SeatsEffects } from './core/seats/seats.effects';
 import { HomeComponent } from './home/home.component';
-import { ModalModule } from './shared/components/modal/modal.module';
-import { NavComponent } from './shared/components/nav/nav.component';
+import { ModalModule } from './shared/modal/modal.module';
+import { NavComponent } from './shared/nav/nav.component';
 
 registerLocaleData(langDe, 'de');
 
@@ -43,20 +43,11 @@ registerLocaleData(langDe, 'de');
 
     ModalModule,
     NgbCollapseModule,
+    AuthConfigModule,
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'de'},
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    },
-    {
-      provide: APP_INITIALIZER,
-      useFactory: authInit,
-      deps: [AuthService],
-      multi: true
-    }
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
