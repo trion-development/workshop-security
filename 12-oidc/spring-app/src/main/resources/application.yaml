@@ -41,13 +41,14 @@ spring:
           kc:
             client-name: Login with Keycloak
             client-id: app-client
-#            client-secret: Secr3t
+            #client-secret: public-client
             authorization-grant-type: authorization_code
-            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            #redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
             scope: openid, profile
         provider:
           kc:
             issuer-uri: http://localhost:9090/realms/app
+
 #      resourceserver:
 #        jwt:
 #          issuer-uri: http://localhost:9090/realms/app
