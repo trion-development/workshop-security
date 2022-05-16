@@ -4,6 +4,7 @@ logging:
 #    console: "%magenta([%thread]) %highlight(%-5level) %logger.%M - %msg%n"
   level:
     de.trion.training: info
+    org.springframework.security.oauth2: debug
 
 management:
   endpoints:
@@ -49,9 +50,9 @@ spring:
           kc:
             issuer-uri: http://localhost:9090/realms/app
 
-#      resourceserver:
-#        jwt:
-#          issuer-uri: http://localhost:9090/realms/app
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9090/realms/app
 
 info:
   sample: from info

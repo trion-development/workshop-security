@@ -107,11 +107,13 @@ public class WebSecurityConfig {
     {
         return httpSecurity
            .mvcMatcher("/api/**")
+           .cors().and()
            .authorizeRequests()
            .antMatchers(HttpMethod.POST).hasRole("ADMIN")
-           .anyRequest().permitAll()
+           .anyRequest().authenticated()
            .and()
            .httpBasic()
+           .and().oauth2ResourceServer().jwt().and()
            .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER)
            .and().build();
     }
@@ -141,5 +143,4 @@ public class WebSecurityConfig {
            .logout().logoutSuccessUrl("/");
         return httpSecurity.build();
     }
-
 }
