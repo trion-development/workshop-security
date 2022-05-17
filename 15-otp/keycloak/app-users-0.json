@@ -161,7 +161,7 @@
     "createdTimestamp" : 1652648917571,
     "username" : "user",
     "enabled" : true,
-    "totp" : false,
+    "totp" : true,
     "emailVerified" : true,
     "email" : "user@example.com",
     "credentials" : [ {
@@ -170,6 +170,13 @@
       "createdDate" : 1652648928044,
       "secretData" : "{\"value\":\"z9WHH4oW9G3RauMnJiMgeQVml7cNJX9k2gBTDuXf/JFvMOXaA1X7PtbsV6gHPNyZlxFmYj9gbaDIjquhQtJ2Rg==\",\"salt\":\"Kup64OH3QHPi9tPCYi0k5A==\",\"additionalParameters\":{}}",
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
+    }, {
+      "id" : "17e83f8a-8284-48b7-9e7f-9dd1bba0fba9",
+      "type" : "otp",
+      "userLabel" : "web",
+      "createdDate" : 1652783318832,
+      "secretData" : "{\"value\":\"adW4m31wAQqqFw4PwBpw\"}",
+      "credentialData" : "{\"subType\":\"totp\",\"digits\":6,\"counter\":0,\"period\":30,\"algorithm\":\"HmacSHA1\"}"
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ ],

@@ -86,6 +86,14 @@ services:
       - 9090:9090
     restart: unless-stopped
 
+  otp:
+    build: otp
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.otp.rule=Host(`otp.localhost`)"
+    ports:
+    - "8091:80"
+
 
   mailcatcher:
     image: stpaquet/alpinemailcatcher
