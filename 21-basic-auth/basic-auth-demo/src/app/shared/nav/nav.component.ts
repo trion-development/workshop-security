@@ -12,12 +12,12 @@ import { User } from '../../core/user';
 })
 export class NavComponent implements OnInit {
 
-  userInfo?: User;
+  userInfo?: Observable<User | undefined>;
   isMenuCollapsed = true;
 
   constructor(private readonly store: Store,
-              private authService: AuthService,
-              private authStore: AuthStoreService) {
+              private readonly authService: AuthService,
+              private readonly authStore: AuthStoreService) {
   }
 
   ngOnInit(): void {

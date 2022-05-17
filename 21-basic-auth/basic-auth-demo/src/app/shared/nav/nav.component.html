@@ -28,8 +28,8 @@
            routerLink="/login"
            routerLinkActive="active">Login</a>
       </li>
-      <li *ngIf="userInfo" class="user-info">
-        Eingeloggt als: <b>{{userInfo?.username}}</b> <br>
+      <li *ngIf="userInfo|async as user" class="user-info">
+        Eingeloggt als: <b>{{user?.username}}</b> <br>
         <button (click)="logout()" class="btn btn-link text-white m-auto pt-0 d-block">Logout</button>
 <!--        Bereits an {{user?.finishedCourses}} Trainings teilgenommen-->
       </li>
