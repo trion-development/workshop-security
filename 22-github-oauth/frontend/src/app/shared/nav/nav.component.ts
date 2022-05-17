@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AuthStoreService } from '../../../core/auth/auth-store.service';
-import { User } from '../../../core/user';
+import { AuthStoreService } from '../../core/auth/auth-store.service';
+import { User } from '../../core/user';
 
 @Component({
   selector: 'app-nav',
@@ -14,16 +13,10 @@ export class NavComponent implements OnInit {
   userInfo?: Observable<User | undefined>;
   isMenuCollapsed = true;
 
-  constructor(private readonly store: Store, private authStore: AuthStoreService) {
+  constructor(private authStore: AuthStoreService) {
   }
 
   ngOnInit(): void {
     this.userInfo = this.authStore.getUser();
   }
-
-  getValue() {
-    console.log('cd');
-    return '';
-  }
-
 }

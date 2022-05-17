@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { EMPTY, Observable, tap } from 'rxjs';
-import { ModalService } from '../../shared/components/modal/modal.service';
+import { ModalService } from '../../shared/modal/modal.service';
 import { User } from '../user';
 import { AuthStoreService } from './auth-store.service';
 

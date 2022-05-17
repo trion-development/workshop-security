@@ -5,7 +5,7 @@ import { User } from './user';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthStoreService {
+export class StoreService {
 
   private user = new BehaviorSubject<User | undefined>(undefined);
 

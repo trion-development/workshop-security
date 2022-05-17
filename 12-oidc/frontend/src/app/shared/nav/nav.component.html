@@ -31,7 +31,6 @@
       <li *ngIf="userInfo|async as data" class="user-info">
         Eingeloggt als: <b>{{data?.preferred_username}}</b> <br>
         <button (click)="logout()" class="btn btn-link text-white m-auto pt-0 d-block">Logout</button>
-        <!--        Bereits an {{user?.finishedCourses}} Trainings teilgenommen-->
       </li>
     </ul>
   </div>

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AuthStoreService } from '../../core/auth/auth-store.service';
 import { AuthService } from '../../core/auth/auth.service';
@@ -15,8 +14,7 @@ export class NavComponent implements OnInit {
   userInfo?: Observable<User | undefined>;
   isMenuCollapsed = true;
 
-  constructor(private readonly store: Store,
-              private readonly authService: AuthService,
+  constructor(private readonly authService: AuthService,
               private readonly authStore: AuthStoreService) {
   }
 
