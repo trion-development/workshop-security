@@ -21,16 +21,11 @@ export class AuthService {
               private http: HttpClient) {
   }
 
-  logout(): void {
-    this.authStore.clear();
-    this.router.navigateByUrl('/');
-  }
-
   login(credentials: { username: string, password: string }): Observable<User> {
     const httpOptions = {
       withCredentials: true,
       headers: new HttpHeaders({
-        Authorization: 'Basic ' + btoa(`${credentials.username}` + ':' + `${credentials.password}`)
+        Authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
       })
     };
     this.authStore.storeCredentials(credentials.username, credentials.password);
@@ -44,5 +39,10 @@ export class AuthService {
           error: err => this.authStore.clear()
         })
       );
+  }
+
+  logout(): void {
+    this.authStore.clear();
+    this.router.navigateByUrl('/');
   }
 }

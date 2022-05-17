@@ -3,15 +3,13 @@ import {
   ActivatedRouteSnapshot,
   CanActivate,
   CanLoad,
-  Route, Router,
+  Route,
+  Router,
   RouterStateSnapshot,
   UrlSegment,
   UrlTree
 } from '@angular/router';
-import { Observable, tap } from 'rxjs';
-import { first, map } from 'rxjs/operators';
 import { AuthStoreService } from './auth-store.service';
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,24 +19,19 @@ export class AuthGuard implements CanActivate, CanLoad {
   constructor(private authStore: AuthStoreService, private router: Router) {
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> {
-    return this.getLogedIn();
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree {
+    return this.getLoggedIn();
   }
 
-  canLoad(route: Route, segments: UrlSegment[]): Observable<boolean | UrlTree> {
-    return this.getLogedIn();
+  canLoad(route: Route, segments: UrlSegment[]): boolean | UrlTree {
+    return this.getLoggedIn();
   }
 
-  private getLogedIn(): Observable<boolean | UrlTree> {
-    return this.authStore.getLoginState()
-      .pipe(
-        first(state => !state.loginPending),
-        map(state => {
-          if (!state.user) {
-            return this.router.parseUrl('/login')
-          }
-          return true;
-        })
-      );
+  private getLoggedIn(): boolean | UrlTree {
+    const state = this.authStore.getLoginState();
+    if (!state.user) {
+      return this.router.parseUrl('/login');
+    }
+    return true;
   }
 }

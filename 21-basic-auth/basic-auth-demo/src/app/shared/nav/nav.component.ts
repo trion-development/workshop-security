@@ -12,7 +12,7 @@ import { User } from '../../core/user';
 })
 export class NavComponent implements OnInit {
 
-  userInfo?: Observable<User | undefined>;
+  userInfo?: User;
   isMenuCollapsed = true;
 
   constructor(private readonly store: Store,
