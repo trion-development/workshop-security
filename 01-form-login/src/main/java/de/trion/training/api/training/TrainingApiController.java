@@ -12,11 +12,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -35,13 +38,23 @@ public class TrainingApiController {
 
    @GetMapping
    public Page<TrainingDto> get(Pageable pageable) {
+
+      var context = SecurityContextHolder.getContext();
+      var auth = context.getAuthentication().getDetails();
+      var principal = context.getAuthentication().getPrincipal();
+      logger.info("userdetails: {}", auth);
+      logger.info("principal: {}", principal);
+
       final Page<Training> page = trainingRepository.findAll(pageable);
       final List<TrainingDto> dtoList = trainingMapper.toDto(page.getContent());
       return new PageImpl<>(dtoList, pageable, page.getTotalElements());
    }
 
    @PostMapping
-   public TrainingDto save(@Valid @RequestBody TrainingDto training){
+   public TrainingDto save(@Valid @RequestBody TrainingDto training, Principal principal, Authentication authentication){
+
+
+
       logger.info("Valides Training: {}", training);
       return trainingMapper.toDto(trainingRepository.save(trainingMapper.fromDto(training)));
    }

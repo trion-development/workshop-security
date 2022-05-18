@@ -26,12 +26,15 @@ public class TrainingAppApplication {
             .build();
    }
 
+
    @Qualifier("actuator")
    @Bean
    RestTemplate actuatorRestTemplate(RestTemplateBuilder builder) {
       return builder
          .basicAuthentication("endpoint", "endpoint")
          .rootUri("http://localhost:8080/actuator")
+         .setConnectTimeout(Duration.ofMillis(500))
+         .setReadTimeout(Duration.ofSeconds(5))
          .build();
    }
 

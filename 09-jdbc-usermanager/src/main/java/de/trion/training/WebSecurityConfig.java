@@ -67,6 +67,7 @@ public class WebSecurityConfig {
     {
         httpSecurity
            .antMatcher("/h2-console/**")
+           .requestMatcher(request -> request.getRemoteAddr().startsWith("127.0.0"))
            .authorizeRequests()
                .anyRequest()
                .permitAll()

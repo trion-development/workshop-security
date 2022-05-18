@@ -4,6 +4,7 @@ logging:
 #    console: "%magenta([%thread]) %highlight(%-5level) %logger.%M - %msg%n"
   level:
     de.trion.training: info
+    org.springframework.security
 
 management:
   endpoints:

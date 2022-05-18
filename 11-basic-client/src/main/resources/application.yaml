@@ -3,6 +3,7 @@ logging:
 # Ohne Datum/Uhrzeit, besser fuer Video-Demo
 #    console: "%magenta([%thread]) %highlight(%-5level) %logger.%M - %msg%n"
   level:
+    org.springframework.security.oauth2: debug
     de.trion.training: info
 
 management:
@@ -28,10 +29,28 @@ spring:
       ddl-auto: validate
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  security:
+    oauth2:
+      client:
+        registration:
+          kc:
+            client-id: app-client
+            client-name: Anmelden mit Keycloak
+            #client-secret: public-client
+            authorization-grant-type: authorization_code
+        provider:
+          kc:
+            issuer-uri: http://localhost:9090/realms/app
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9090/realms/app
+
+
 #  datasource:
 #    url: jdbc:mariadb://localhost/training
 #    username: root
 #    password: training
+
 
 info:
   sample: from info

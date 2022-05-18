@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"    xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+
 
 <head th:replace="fragments/header :: head">
    <title>Alle Trainings</title>
@@ -82,6 +84,8 @@
          </div>
       </div>
 
+      <div sec:authorize="hasRole('ADMIN')">
+
       <h2>Neues Training</h2>
       <form action="#" th:action="@{/trainings}" th:object="${training}" method="post">
          <div class="row alert alert-danger text-left" th:if="${#fields.hasErrors('*')}">
@@ -127,6 +131,7 @@
          </div>
          <button type="submit" class="btn btn-primary btn-lg">Erzeugen</button>
       </form>
+      </div>
    </div>
 
 </main><!-- /.container -->

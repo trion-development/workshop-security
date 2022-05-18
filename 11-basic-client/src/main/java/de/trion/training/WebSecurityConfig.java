@@ -21,6 +21,8 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @EnableWebSecurity(debug = true)
 @Configuration(proxyBeanMethods = false)
 public class WebSecurityConfig {
@@ -110,6 +112,7 @@ public class WebSecurityConfig {
            .anyRequest().permitAll()
            .and()
            .httpBasic()
+           .and().oauth2ResourceServer().jwt().and()
            .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER)
            .and().build();
     }
@@ -134,8 +137,9 @@ public class WebSecurityConfig {
 //        httpSecurity.anonymous().principal(anon);
 
         httpSecurity
-           .formLogin()
-           .and().logout().logoutSuccessUrl("/");
+//           .formLogin()
+           .oauth2Login(withDefaults())
+           .logout().logoutSuccessUrl("/");
         return httpSecurity.build();
     }
 
