@@ -1,0 +1,10 @@
+{
+  "/token": {
+    "target": "https://github.com/login/oauth/access_token",
+    "secure": true,
+    "pathRewrite": {
+      "^/token": ""
+    },
+    "changeOrigin": true
+  }
+}

@@ -1,0 +1,41 @@
+<main role="main" class="container">
+
+  <div class="starter-template">
+    <h1>Login</h1>
+  </div>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div *ngIf="error" class="row alert alert-danger text-left">
+      {{error|json}}
+    </div>
+
+    <div class="row">
+      <div class="form-group col">
+        <label for="username">Username</label>
+        <input type="text"
+               formControlName="username"
+               class="form-control typeahead"
+               id="username"
+               aria-describedby="usernameDescription"
+               placeholder="Vorname Nachname">
+        <small id="usernameDescription" class="form-text text-muted">Name des Nutzers</small>
+        <p *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="alert-warning">
+          Fehler</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col">
+        <label for="password">Passwort</label>
+        <input type="password"
+               formControlName="password"
+               class="form-control typeahead"
+               id="password"
+               aria-describedby="passwordDescription"
+               placeholder="******">
+        <small id="passwordDescription" class="form-text text-muted">Passwort</small>
+        <p *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="alert-warning">
+          Fehler</p>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg">Login</button>
+  </form>
+</main>
