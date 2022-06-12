@@ -26,7 +26,7 @@
     "@ngrx/store": "^13.1.0",
     "@ngrx/store-devtools": "^13.1.0",
     "@popperjs/core": "^2.10.2",
-    "bootstrap": "^5.1.3",
+    "bootstrap": "^5.2.0-beta1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

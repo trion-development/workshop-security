@@ -8,3 +8,14 @@
     <router-outlet></router-outlet>
   </div>
 </main>
+
+
+<input #demoEl (input)="sanitize(demoEl.value)">
+<!--<a href="#" onClick="alert('you clicked me')">Click Me</a>-->
+
+<div>
+  Demo Binding:
+  <div [innerHTML]="demo"></div>
+  Demo Interpolation:
+  <div>{{demo}}</div>
+</div>

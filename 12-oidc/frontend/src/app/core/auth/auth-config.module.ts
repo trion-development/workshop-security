@@ -3,7 +3,8 @@ import { AuthModule, LogLevel } from 'angular-auth-oidc-client';
 
 
 @NgModule({
-  imports: [AuthModule.forRoot({
+  imports: [
+    AuthModule.forRoot({
     config: {
       authority: 'http://localhost:9090/realms/app/.well-known/openid-configuration',
       redirectUrl: window.location.origin,
@@ -18,7 +19,8 @@ import { AuthModule, LogLevel } from 'angular-auth-oidc-client';
       secureRoutes: ['http://localhost:8080/api/'],
       logLevel: LogLevel.Error
     }
-  })],
+  })
+  ],
   exports: [AuthModule],
 })
 export class AuthConfigModule {
