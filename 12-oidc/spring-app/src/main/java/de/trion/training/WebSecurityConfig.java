@@ -92,6 +92,7 @@ public class WebSecurityConfig {
         return httpSecurity.build();
     }
 
+    //webmvc
     @Bean
     public SecurityFilterChain trainings(HttpSecurity httpSecurity) throws Exception
     {
@@ -113,7 +114,7 @@ public class WebSecurityConfig {
            .cors().and()
            .csrf().disable()
            .authorizeRequests()
-           .antMatchers(HttpMethod.POST).hasRole("ADMIN")
+           .antMatchers(HttpMethod.POST).access("hasRole('ADMIN') or hasAuthority('SCOPE_ADMIN')")
            .anyRequest().authenticated()
            .and()
            .httpBasic()

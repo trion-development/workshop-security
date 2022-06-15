@@ -404,9 +404,6 @@
   "webAuthnPolicyPasswordlessAvoidSameAuthenticatorRegister" : false,
   "webAuthnPolicyPasswordlessAcceptableAaguids" : [ ],
   "scopeMappings" : [ {
-    "clientScope" : "ADMIN",
-    "roles" : [ "training-manager-role" ]
-  }, {
     "clientScope" : "offline_access",
     "roles" : [ "offline_access" ]
   } ],
