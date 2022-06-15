@@ -411,6 +411,10 @@
     "roles" : [ "offline_access" ]
   } ],
   "clientScopeMappings" : {
+    "app-client" : [ {
+      "clientScope" : "ADMIN",
+      "roles" : [ "app-training-manager" ]
+    } ],
     "account" : [ {
       "client" : "account-console",
       "roles" : [ "manage-account" ]
