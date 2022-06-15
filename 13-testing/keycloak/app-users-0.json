@@ -1,95 +1,27 @@
 {
   "realm" : "app",
   "users" : [ {
-    "id" : "e7939e5a-7399-444b-89ac-2dafd016e924",
-    "createdTimestamp" : 1645279160598,
-    "username" : "admin1",
+    "id" : "2a1de36e-140b-4875-9613-dba83097a961",
+    "createdTimestamp" : 1655277453016,
+    "username" : "manager",
     "enabled" : true,
     "totp" : false,
     "emailVerified" : true,
-    "email" : "admin@example.com",
-    "attributes" : {
-      "corporateKey" : [ "admin1" ]
-    },
+    "firstName" : "Training",
+    "lastName" : "Manager",
+    "email" : "manager@example.com",
     "credentials" : [ {
-      "id" : "04ff90e6-82cf-4cbb-8c3b-1ebfeaebb015",
+      "id" : "c6b3204c-2013-4155-a0eb-c7d1a21805ab",
       "type" : "password",
-      "createdDate" : 1645284369117,
-      "secretData" : "{\"value\":\"1loigZrn7LncjSMjXC0DiZJgba6VutPpqUpTOjw3U7WTdqeCdY3CW9MdFXgvZh/VdAUMUtGPom8maTVmZk13Mg==\",\"salt\":\"YPfPukTW7IbGRQNbhXr01A==\",\"additionalParameters\":{}}",
-      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
-    } ],
-    "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ ],
-    "notBefore" : 0,
-    "groups" : [ "/admin" ]
-  }, {
-    "id" : "8e192543-eb6c-4369-8e22-92a88082ff99",
-    "createdTimestamp" : 1645394839452,
-    "username" : "admin2",
-    "enabled" : true,
-    "totp" : false,
-    "emailVerified" : true,
-    "firstName" : "Admin",
-    "email" : "admin1@example.com",
-    "attributes" : {
-      "corporateKey" : [ "admin2" ]
-    },
-    "credentials" : [ {
-      "id" : "b01fc877-f914-40b9-ac67-80a522353d06",
-      "type" : "password",
-      "createdDate" : 1645394847110,
-      "secretData" : "{\"value\":\"qL134Rw9Y9ZXzQM8sd68kP2bu5zgx7Y1JJvaoQ/y9ahX2qDAn9eHx16mvBDKdCTwN+LrRuXy5hEdUMGf2pu9MA==\",\"salt\":\"mD/5XSkMcDQM2eJQLB+jCw==\",\"additionalParameters\":{}}",
+      "createdDate" : 1655277464031,
+      "secretData" : "{\"value\":\"jtDuCiiIp3OSYLID97qeT03ezq6s9kzNrwulzIyLbsY2VwLmrGGFYWkC1qX/fu0Gze0Tu9YOfb+HxhrQIzRBiw==\",\"salt\":\"kDaVFMQbgk4kv7JYfWXb3A==\",\"additionalParameters\":{}}",
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ ],
     "realmRoles" : [ "default-roles-pt" ],
     "notBefore" : 0,
-    "groups" : [ "/admin" ]
-  }, {
-    "id" : "2022b511-c464-48ae-a511-063b20ac01bb",
-    "createdTimestamp" : 1645279260658,
-    "username" : "manager1",
-    "enabled" : true,
-    "totp" : false,
-    "emailVerified" : true,
-    "email" : "user-manager@example.com",
-    "attributes" : {
-      "corporateKey" : [ "userManager1" ]
-    },
-    "credentials" : [ {
-      "id" : "04ff90e6-82cf-4cbb-8c3b-1ebfeaebb018",
-      "type" : "password",
-      "createdDate" : 1645284369117,
-      "secretData" : "{\"value\":\"1loigZrn7LncjSMjXC0DiZJgba6VutPpqUpTOjw3U7WTdqeCdY3CW9MdFXgvZh/VdAUMUtGPom8maTVmZk13Mg==\",\"salt\":\"YPfPukTW7IbGRQNbhXr01A==\",\"additionalParameters\":{}}",
-      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
-    } ],
-    "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ ],
-    "notBefore" : 0,
-    "groups" : [ "/user-manager" ]
-  }, {
-    "id" : "2022b511-c464-48ae-a511-063b20ac01bc",
-    "createdTimestamp" : 1645279260658,
-    "username" : "manager2",
-    "enabled" : true,
-    "totp" : false,
-    "emailVerified" : true,
-    "email" : "user-manager2@example.com",
-    "attributes" : {
-      "corporateKey" : [ "userManager2" ]
-    },
-    "credentials" : [ {
-      "id" : "04ff90e6-82cf-4cbb-8c3b-1ebfeaebb019",
-      "type" : "password",
-      "createdDate" : 1645284369117,
-      "secretData" : "{\"value\":\"1loigZrn7LncjSMjXC0DiZJgba6VutPpqUpTOjw3U7WTdqeCdY3CW9MdFXgvZh/VdAUMUtGPom8maTVmZk13Mg==\",\"salt\":\"YPfPukTW7IbGRQNbhXr01A==\",\"additionalParameters\":{}}",
-      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
-    } ],
-    "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ ],
-    "notBefore" : 0,
-    "groups" : [ "/user-manager" ]
+    "groups" : [ "/admin", "/training-manager-group" ]
   }, {
     "id" : "fdcd4c2e-3307-44c1-9f17-f7a568ac2e87",
     "createdTimestamp" : 1645279233662,
@@ -112,50 +44,6 @@
     "requiredActions" : [ ],
     "notBefore" : 0,
     "groups" : [ "/monitoring" ]
-  }, {
-    "id" : "7dc3b0a5-5bd4-47f8-97c1-7ba5c6ce6c32",
-    "createdTimestamp" : 1645279199276,
-    "username" : "pricing1",
-    "enabled" : true,
-    "totp" : false,
-    "emailVerified" : true,
-    "email" : "pricing@example.com",
-    "attributes" : {
-      "corporateKey" : [ "pricing1" ]
-    },
-    "credentials" : [ {
-      "id" : "04ff90e6-82cf-4cbb-8c3b-1ebfeaebb017",
-      "type" : "password",
-      "createdDate" : 1645284369117,
-      "secretData" : "{\"value\":\"1loigZrn7LncjSMjXC0DiZJgba6VutPpqUpTOjw3U7WTdqeCdY3CW9MdFXgvZh/VdAUMUtGPom8maTVmZk13Mg==\",\"salt\":\"YPfPukTW7IbGRQNbhXr01A==\",\"additionalParameters\":{}}",
-      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
-    } ],
-    "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ ],
-    "notBefore" : 0,
-    "groups" : [ "/pricing" ]
-  }, {
-    "id" : "7dc3b0a5-5bd4-47f8-97c1-7ba5c6ce6c33",
-    "createdTimestamp" : 1645279199276,
-    "username" : "pricing2",
-    "enabled" : true,
-    "totp" : false,
-    "emailVerified" : true,
-    "email" : "pricing2@example.com",
-    "attributes" : {
-      "corporateKey" : [ "pricing2" ]
-    },
-    "credentials" : [ {
-      "id" : "14ff90e6-82cf-4cbb-8c3b-1ebfeaebb018",
-      "type" : "password",
-      "createdDate" : 1645284369117,
-      "secretData" : "{\"value\":\"1loigZrn7LncjSMjXC0DiZJgba6VutPpqUpTOjw3U7WTdqeCdY3CW9MdFXgvZh/VdAUMUtGPom8maTVmZk13Mg==\",\"salt\":\"YPfPukTW7IbGRQNbhXr01A==\",\"additionalParameters\":{}}",
-      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
-    } ],
-    "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ ],
-    "notBefore" : 0,
-    "groups" : [ "/pricing" ]
   }, {
     "id" : "c09cde18-b4a4-40d8-85c2-263e2f98508b",
     "createdTimestamp" : 1652648917571,
