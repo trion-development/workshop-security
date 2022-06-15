@@ -38,6 +38,7 @@ public class WebSecurityConfig {
            .addScript("classpath:org/springframework/security/core/userdetails/jdbc/users.ddl").build();
     }
 
+    //local login (thymeleaf)
     @Profile("dev")
     @Bean
     UserDetailsManager users(DataSource dataSource)
@@ -103,6 +104,7 @@ public class WebSecurityConfig {
         return httpSecurity.build();
     }
 
+    //oidc resource server (f.e. angular)
     @Bean
     public SecurityFilterChain api(HttpSecurity httpSecurity) throws Exception
     {
@@ -136,9 +138,6 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain login(HttpSecurity httpSecurity) throws Exception
     {
-//        var anon = new User("anonymousUser", "", List.of(new SimpleGrantedAuthority("ANONYMOUS")) );
-//        httpSecurity.anonymous().principal(anon);
-
         httpSecurity
 //           .formLogin().and()
            .oauth2Login(withDefaults())
