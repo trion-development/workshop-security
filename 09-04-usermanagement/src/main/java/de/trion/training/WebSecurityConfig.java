@@ -27,8 +27,7 @@ public class WebSecurityConfig {
         System.setProperty("spring.flyway.baseline-on-migrate", "true");
         System.setProperty("spring.flyway.baseline-version", "0");
         var builder = new EmbeddedDatabaseBuilder();
-        return builder.setType(EmbeddedDatabaseType.H2)
-           .addScript("classpath:org/springframework/security/core/userdetails/jdbc/users.ddl").build();
+        return builder.setType(EmbeddedDatabaseType.H2).build();
     }
 
 
@@ -52,7 +51,7 @@ public class WebSecurityConfig {
     {
         httpSecurity
            .antMatcher("/h2-console/**")
-           .requestMatcher(request -> request.getRemoteAddr().startsWith("127.0.0"))
+           //.requestMatcher(request -> request.getRemoteAddr().startsWith("127.0.0"))
            .authorizeRequests()
                .anyRequest()
                .permitAll()
@@ -77,11 +76,19 @@ public class WebSecurityConfig {
     }
 
     @Bean
+    public SecurityFilterChain admin(HttpSecurity httpSecurity) throws Exception
+    {
+        httpSecurity
+            .mvcMatcher("/admin/**")
+            .authorizeRequests()
+            .anyRequest().hasRole("ADMIN");
+        return httpSecurity.build();
+    }
+
+
+    @Bean
     public SecurityFilterChain login(HttpSecurity httpSecurity) throws Exception
     {
-//        var anon = new User("anonymousUser", "", List.of(new SimpleGrantedAuthority("ANONYMOUS")) );
-//        httpSecurity.anonymous().principal(anon);
-
         httpSecurity
            .formLogin()
            .and().logout().logoutSuccessUrl("/");

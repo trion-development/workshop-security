@@ -33,7 +33,7 @@ public class GrantedAuthorityEntity implements GrantedAuthority
     @Override
     public String getAuthority()
     {
-        return null;
+        return authority;
     }
 
     public void setId(Integer id)
@@ -54,5 +54,11 @@ public class GrantedAuthorityEntity implements GrantedAuthority
     public void setUserEntity(UserEntity userEntity)
     {
         this.userEntity = userEntity;
+    }
+
+    @Override
+    public String toString()
+    {
+        return authority;
     }
 }
