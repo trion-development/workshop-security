@@ -5,7 +5,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -21,14 +20,14 @@ public class UserEntity implements UserDetails
     private boolean locked;
     private boolean enabled;
 
-    @OneToMany(mappedBy = "userEntity", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "userEntity", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<GrantedAuthorityEntity> authorities;
 
     public UserEntity(String username, String password, Collection<? extends GrantedAuthority> authorities)
     {
         this.username = username;
         this.password = password;
-        this.authorities = authorities.stream().map(GrantedAuthority::getAuthority).map(GrantedAuthorityEntity::new).collect(Collectors.toSet());
+        this.authorities = authorities.stream().map(GrantedAuthority::getAuthority).map(a -> new GrantedAuthorityEntity(a, this)).collect(Collectors.toSet());
     }
 
     public UserEntity()
@@ -48,7 +47,7 @@ public class UserEntity implements UserDetails
 
     public void setId(Integer id)
     {
-
+        this.id=id;
     }
 
     public void setAuthorities(Set<GrantedAuthorityEntity> authorities)

@@ -14,7 +14,7 @@ public class GrantedAuthorityEntity implements GrantedAuthority
 
     private String authority;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private UserEntity userEntity;
 
     GrantedAuthorityEntity(String authority) {
@@ -23,6 +23,12 @@ public class GrantedAuthorityEntity implements GrantedAuthority
 
     public GrantedAuthorityEntity()
     {
+    }
+
+    public GrantedAuthorityEntity(String authority, UserEntity userEntity)
+    {
+        this.authority = authority;
+        this.userEntity = userEntity;
     }
 
     public void setAuthority(String authority)

@@ -19,7 +19,10 @@ public class JpaUserDetailsManager implements UserDetailsManager
     @Override
     public void createUser(UserDetails user)
     {
-        userRepository.save(new UserEntity(user.getUsername(), user.getPassword(), user.getAuthorities()));
+        var entity = new UserEntity(user.getUsername(), user.getPassword(), user.getAuthorities());
+        entity.setEnabled(user.isEnabled());
+        entity.setLocked(! user.isAccountNonLocked());
+        userRepository.save(entity);
     }
 
     @Override

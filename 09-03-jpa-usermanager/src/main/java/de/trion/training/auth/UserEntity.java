@@ -21,14 +21,14 @@ public class UserEntity implements UserDetails
     private boolean locked;
     private boolean enabled;
 
-    @OneToMany(mappedBy = "userEntity", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "userEntity", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<GrantedAuthorityEntity> authorities;
 
     public UserEntity(String username, String password, Collection<? extends GrantedAuthority> authorities)
     {
         this.username = username;
         this.password = password;
-        this.authorities = authorities.stream().map(GrantedAuthority::getAuthority).map(GrantedAuthorityEntity::new).collect(Collectors.toSet());
+        this.authorities = authorities.stream().map(GrantedAuthority::getAuthority).map(a -> new GrantedAuthorityEntity(a, this)).collect(Collectors.toSet());
     }
 
     public UserEntity()
