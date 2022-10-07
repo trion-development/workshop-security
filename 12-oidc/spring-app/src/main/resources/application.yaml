@@ -52,7 +52,7 @@ spring:
 
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:9090/realms/app
+          issuer-uri: http://0.0.0.0:9090/realms/app
 
 info:
   sample: from info
