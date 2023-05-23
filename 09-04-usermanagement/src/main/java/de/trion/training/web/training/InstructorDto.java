@@ -1,6 +1,6 @@
 package de.trion.training.web.training;
 
-import javax.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotEmpty;
 
 public class InstructorDto {
 

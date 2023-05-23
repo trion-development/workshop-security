@@ -7,6 +7,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
@@ -50,15 +51,14 @@ public class WebSecurityConfig {
     public SecurityFilterChain h2Filter(HttpSecurity httpSecurity) throws Exception
     {
         httpSecurity
-           .antMatcher("/h2-console/**")
-           //.requestMatcher(request -> request.getRemoteAddr().startsWith("127.0.0"))
+           .securityMatcher("/h2-console/**")
            .authorizeRequests()
-               .anyRequest()
-               .permitAll()
+           .anyRequest()
+           .permitAll()
            .and()
-           .csrf().disable()
-           .headers()
-           .frameOptions().disable();
+           .csrf(c -> c.disable())
+           .headers(h -> h.frameOptions(o -> o.disable()))
+        ;
 
         return httpSecurity.build();
     }
@@ -67,10 +67,10 @@ public class WebSecurityConfig {
     public SecurityFilterChain trainings(HttpSecurity httpSecurity) throws Exception
     {
         httpSecurity
-           .mvcMatcher("/trainings/**")
+           .securityMatcher("/trainings/**")
            .authorizeRequests()
-           .antMatchers(HttpMethod.POST).hasRole("ADMIN")
-           .mvcMatchers("/trainings/*/edit").hasRole("ADMIN")
+           .requestMatchers(HttpMethod.POST).hasRole("ADMIN")
+           .requestMatchers("/trainings/*/edit").hasRole("ADMIN")
            .anyRequest().permitAll();
         return httpSecurity.build();
     }
@@ -82,8 +82,8 @@ public class WebSecurityConfig {
 //        httpSecurity.anonymous().principal(anon);
 
         httpSecurity
-           .formLogin()
-           .and().logout().logoutSuccessUrl("/");
+           .formLogin(Customizer.withDefaults())
+           .logout(l -> l.logoutSuccessUrl("/"));
         return httpSecurity.build();
     }
 

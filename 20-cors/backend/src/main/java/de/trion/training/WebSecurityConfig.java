@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpMethod;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -20,6 +21,8 @@ import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
+
+import static org.springframework.security.config.Customizer.withDefaults;
 
 @EnableWebSecurity(debug = true)
 @Configuration(proxyBeanMethods = false)
@@ -76,55 +79,50 @@ public class WebSecurityConfig {
     public SecurityFilterChain h2Filter(HttpSecurity httpSecurity) throws Exception
     {
         httpSecurity
-           .antMatcher("/h2-console/**")
+           .securityMatcher("/h2-console/**")
            .authorizeRequests()
-               .anyRequest()
-               .permitAll()
+           .anyRequest()
+           .permitAll()
            .and()
-           .csrf().disable()
-           .headers()
-           .frameOptions().disable();
+           .csrf(c -> c.disable())
+           .headers(h -> h.frameOptions(o -> o.disable()))
+        ;
 
         return httpSecurity.build();
     }
+
 
     @Bean
     public SecurityFilterChain trainings(HttpSecurity httpSecurity) throws Exception
     {
         httpSecurity
-           .mvcMatcher("/trainings/**")
+           .securityMatcher("/trainings/**")
            .authorizeRequests()
-           .antMatchers(HttpMethod.POST).hasRole("ADMIN")
-           .mvcMatchers("/trainings/*/edit").hasRole("ADMIN")
+           .requestMatchers(HttpMethod.POST).hasRole("ADMIN")
+           .requestMatchers("/trainings/*/edit").hasRole("ADMIN")
            .anyRequest().permitAll();
         return httpSecurity.build();
     }
 
+    //oidc resource server (f.e. angular)
     @Bean
     public SecurityFilterChain api(HttpSecurity httpSecurity) throws Exception
     {
         return httpSecurity
-           .mvcMatcher("/api/**")
-           .authorizeRequests()
-           .antMatchers(HttpMethod.POST).hasRole("ADMIN")
-           .anyRequest().permitAll()
-           .and()
-           .httpBasic()
-           .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER)
-           .and().build();
+           .securityMatcher("/api/**")
+           .authorizeRequests(a ->
+              a.requestMatchers(HttpMethod.POST).hasRole("ADMIN")
+                 .anyRequest().permitAll())
+           .httpBasic(withDefaults())
+           .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.NEVER))
+           .build();
     }
 
     @Bean
     public SecurityFilterChain endpoint(HttpSecurity http) throws Exception {
-        http.requestMatcher(EndpointRequest.toAnyEndpoint().excluding(HealthEndpoint.class))
-           .cors().and()
-           .authorizeRequests()
-           //.antMatchers("/actuator/health", "/actuator/health/**")
-           //.permitAll()
-           .anyRequest()
-           .hasRole("ENDPOINT_ADMIN")
-           .and().httpBasic()
-           .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER);
+        http.securityMatcher(EndpointRequest.toAnyEndpoint().excluding(HealthEndpoint.class))
+           .authorizeRequests(a -> a.anyRequest().hasRole("ENDPOINT_ADMIN"))
+           .httpBasic(Customizer.withDefaults());
         return http.build();
     }
 
@@ -135,8 +133,8 @@ public class WebSecurityConfig {
 //        httpSecurity.anonymous().principal(anon);
 
         httpSecurity
-           .formLogin()
-           .and().logout().logoutSuccessUrl("/");
+           .formLogin(withDefaults())
+           .logout(l -> l.logoutSuccessUrl("/"));
         return httpSecurity.build();
     }
 

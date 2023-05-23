@@ -2,7 +2,7 @@ package de.trion.training.auth;
 
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "TBL_AUTH_AUTHORITIES")
