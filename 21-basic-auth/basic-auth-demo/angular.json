@@ -108,8 +108,9 @@
       }
     }
   },
-  "defaultProject": "basic-auth-demo",
   "cli": {
-    "defaultCollection": "@ngrx/schematics"
+    "schematicCollections": [
+      "@ngrx/schematics"
+    ]
   }
 }

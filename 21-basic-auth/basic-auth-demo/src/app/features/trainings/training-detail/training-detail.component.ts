@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -17,9 +17,9 @@ import { Training } from '../state/training.model';
 export class TrainingDetailComponent implements OnInit {
 
   trainingWithSeats?: Observable<Training>;
-  bewertungForm = new FormGroup({
-    stars: new FormControl(0),
-    comment: new FormControl()
+  bewertungForm = new UntypedFormGroup({
+    stars: new UntypedFormControl(0),
+    comment: new UntypedFormControl()
   });
 
   constructor(private readonly route: ActivatedRoute,

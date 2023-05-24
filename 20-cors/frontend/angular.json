@@ -111,8 +111,9 @@
       }
     }
   },
-  "defaultProject": "cors-demo",
   "cli": {
-    "defaultCollection": "@ngrx/schematics"
+    "schematicCollections": [
+      "@ngrx/schematics"
+    ]
   }
 }

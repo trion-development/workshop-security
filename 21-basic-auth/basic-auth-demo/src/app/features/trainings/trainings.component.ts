@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { SortEvent } from './sortable.directive';
@@ -20,11 +20,11 @@ export class TrainingsComponent implements OnInit {
 
   sort?: SortEvent;
 
-  location = new FormControl('', Validators.required);
-  name = new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(100)]);
-  description = new FormControl('', Validators.required);
-  trainer = new FormControl('', Validators.required);
-  trainingForm = new FormGroup({
+  location = new UntypedFormControl('', Validators.required);
+  name = new UntypedFormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(100)]);
+  description = new UntypedFormControl('', Validators.required);
+  trainer = new UntypedFormControl('', Validators.required);
+  trainingForm = new UntypedFormGroup({
     location: this.location,
     name: this.name,
     description: this.description,

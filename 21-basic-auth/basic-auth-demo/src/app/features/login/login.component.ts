@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../core/auth/auth.service';
 
 @Component({
@@ -8,9 +8,9 @@ import { AuthService } from '../../core/auth/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  loginForm = new FormGroup({
-    username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
+  loginForm = new UntypedFormGroup({
+    username: new UntypedFormControl('', Validators.required),
+    password: new UntypedFormControl('', Validators.required),
   });
   error?: string;
 
