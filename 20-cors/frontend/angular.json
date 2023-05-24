@@ -77,7 +77,7 @@
             "development": {
               "browserTarget": "cors-demo:build:development",
               "headers": {
-                "Content-Security-Policy": "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: ;"
+                //"Content-Security-Policy": "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: ;"
               },
               "proxyConfig": "src/proxy.conf.json"
             }
