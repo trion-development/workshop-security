@@ -1,6 +1,7 @@
 package de.trion.training;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -57,7 +58,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain h2Filter(HttpSecurity httpSecurity) throws Exception
     {
         httpSecurity
-           .securityMatcher("/h2-console/**")
+           .securityMatcher(PathRequest.toH2Console())
            .authorizeRequests()
            .anyRequest()
            .permitAll()
